@@ -119,6 +119,55 @@
 
         </div>
     </div>
+      <!-- ── Vis 3: Player Radar Charts (2×2) ─────────────────────────────── -->
+    <div class="row" style="margin-top: 48px;">
+        <div class="col-md-10 offset-1 main-card">
+
+            <!-- Header -->
+            <div class="row justify-content-center header-row">
+                <div class="align-self-center">
+                    <div class="header-eyebrow">NFL  ·  Player Profiles</div>
+                    <h1>The <span class="highlight">Hybrid</span> Athlete</h1>
+                    <h2>Elite players who blur the boundaries of their position<br>
+                        <span class="subtext">Percentile rank vs positional average.</span>
+                    </h2>
+                </div>
+            </div>
+
+            <!-- Vis 4 row label + charts -->
+            <div class="radar-vis-label">Visualization 4</div>
+            <div class="radar-grid">
+                <div class="radar-unit">
+                    <div class="radar-title" style="color:#f59e0b;">Nick Emanwori</div>
+                    <canvas id="radarEmanwori" width="300" height="300"></canvas>
+                </div>
+                <div class="radar-unit">
+                    <div class="radar-title">Avg Safety</div>
+                    <canvas id="radarAvgSafety" width="300" height="300"></canvas>
+                </div>
+            </div>
+
+            <!-- Vis 5 row label + charts -->
+            <div class="radar-vis-label">Visualization 5</div>
+            <div class="radar-grid" style="margin-bottom: 24px;">
+                <div class="radar-unit">
+                    <div class="radar-title" style="color:#38bdf8;">Kyle Pitts</div>
+                    <canvas id="radarPitts" width="300" height="300"></canvas>
+                </div>
+                <div class="radar-unit">
+                    <div class="radar-title">Avg TE</div>
+                    <canvas id="radarAvgTE" width="300" height="300"></canvas>
+                </div>
+            </div>
+
+            <div class="row footer-row">
+                <div class="col-12 text-center footer-note">
+                    Physical attributes sourced from NFL Combine data &nbsp;·&nbsp; Percentile vs positional average.
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 <!-- Tooltip (shared) -->
@@ -146,5 +195,6 @@
 
 <!-- Main controller -->
 <script src="js/main.js"></script>
+<script src="js/radar.js"></script>
 </body>
 </html>
