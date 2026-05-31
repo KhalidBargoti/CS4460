@@ -284,12 +284,12 @@ class FormationVis {
 // Matchup explanations: offense-defense
         this.MATCHUPS = {
             "12-dime": {
-                advantage: "Offense",
+                advantage: "Overwhelmingly Offense",
                 explanation: "12 personnel gives the offense a strong run-game advantage against dime. The offense has two tight ends for heavier blocking, while dime uses extra defensive backs and fewer big run defenders."
             },
 
             "21-dime": {
-                advantage: "Offense",
+                advantage: "Overwhelmingly Offense",
                 explanation: "21 personnel can punish dime because the offense has two backs and a tight end, creating a heavy run threat against a lighter defensive package."
             },
 
