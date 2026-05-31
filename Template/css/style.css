@@ -418,6 +418,56 @@ h2 {
     font-style: italic;
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   VIS 3 — Player Radar Charts (2×2 grid matching sketch)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Row label ("Visualization 4 / 5") ─────────────────────────────────── */
+.radar-vis-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #334155;
+    text-align: left;
+    padding: 24px 32px 4px;
+}
+
+/* ─── 2-column grid row ──────────────────────────────────────────────────── */
+.radar-grid {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    padding: 0 24px 8px;
+    flex-wrap: wrap;
+}
+
+/* ─── Individual chart unit ──────────────────────────────────────────────── */
+.radar-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ─── Player name above each chart ──────────────────────────────────────── */
+.radar-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #94a3b8;
+    text-align: center;
+}
+
+/* ─── Canvas responsive sizing ───────────────────────────────────────────── */
+.radar-unit canvas {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    display: block;
 .formation-controls-row {
     display: flex;
     justify-content: space-between;
