@@ -18,18 +18,19 @@ function loadData() {
 
         // ── Vis 2: defensive formations ───────────────────────────────────────
         formationVis = new FormationVis(
-            'field-svg',          // SVG element
-            'formation-label',    // formation name div
-            'formation-desc',     // formation desc div
-            'pros-list',          // pros ul
-            'cons-list',          // cons ul
-            'formation-tooltip',  // tooltip div
-            'nav-dots',           // nav dots container
-            'whistle-btn',        // whistle button
-            'help-btn',           // ? button
-            'modal-overlay',      // modal overlay
-            'modal-close',        // modal close button
-            'pos-list'            // modal position list
+            "field-svg",
+            "formation-label",
+            "formation-desc",
+            "pros-list",
+            "cons-list",
+            "formation-tooltip",
+            "nav-dots",
+            "defense-next",
+            "defense-prev",
+            "help-btn",
+            "modal-overlay",
+            "modal-close",
+            "pos-list"
         );
 
         formationVis.initVis();
