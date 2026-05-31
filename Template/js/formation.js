@@ -17,7 +17,7 @@
 class FormationVis {
 
     constructor(svgId, labelId, descId, prosId, consId,
-                tooltipId, navDotsId, whistleBtnId,
+                tooltipId, navDotsId, whistleBtnId, backBtnId,
                 helpBtnId, modalOverlayId, modalCloseId, posListId) {
 
         this.svgId          = svgId;
@@ -28,6 +28,7 @@ class FormationVis {
         this.tooltipId      = tooltipId;
         this.navDotsId      = navDotsId;
         this.whistleBtnId   = whistleBtnId;
+        this.backBtnId      = backBtnId;
         this.helpBtnId      = helpBtnId;
         this.modalOverlayId = modalOverlayId;
         this.modalCloseId   = modalCloseId;
@@ -54,20 +55,6 @@ class FormationVis {
             { abbr:'RS',  name:'Rush (Edge) OLB',    desc:'Pass-rush specialist replacing a LB to generate extra edge pressure.' },
         ];
 
-        // Static offense positions (drawn once, never move)
-        this.OFFENSE = [
-            { x:255, y:155 }, // LT
-            { x:310, y:153 }, // LG
-            { x:380, y:152 }, // C
-            { x:450, y:153 }, // RG
-            { x:505, y:155 }, // RT
-            { x:380, y:128 }, // QB
-            { x:155, y:145 }, // WR-L far
-            { x:205, y:148 }, // WR-L slot
-            { x:605, y:145 }, // WR-R far
-            { x:555, y:148 }, // WR-R slot
-            { x:380, y:108 }, // RB
-        ];
 
         // Four defensive formations; players keyed by id for smooth D3 transitions
         this.FORMATIONS = [
@@ -75,8 +62,11 @@ class FormationVis {
                 id: 'base',
                 label: 'Neutral / Base 4–3',
                 desc: 'The standard starting alignment — four down linemen, three linebackers',
-                pros: ['Balanced vs run and pass', 'Predictable assignments reduce mistakes', 'Strong gap control up front'],
-                cons: ['Vulnerable to spread / 5-wide sets', 'Only 3 DBs limits pass coverage', 'Quick slants can exploit gaps'],
+                overview: [
+                    "Traditional balanced defense with more linebackers on the field.",
+                    "Stronger against the run and heavier offensive personnel.",
+                    "Can struggle against spread passing looks because linebackers may have to cover faster receivers."
+                ],
                 players: [
                     { id:'de-l',  abbr:'DE',  x:270, y:188, color:'#38bdf8' },
                     { id:'dt-l',  abbr:'DT',  x:330, y:185, color:'#38bdf8' },
@@ -96,8 +86,11 @@ class FormationVis {
                 id: 'nickel',
                 label: 'Nickel (4–2–5)',
                 desc: 'A 5th DB replaces a linebacker — the go-to against 3-wide receiver sets',
-                pros: ['Elite slot coverage with nickelback', 'Better pass D vs spread offenses', 'Maintains run-stop with 4 DL'],
-                cons: ['Lighter box; RBs can find creases', 'LB depth reduced — screen plays hurt', 'NB can be targeted in run game'],
+                overview: [
+                    "Modern balanced defense against three-receiver offenses.",
+                    "Adds an extra defensive back while still keeping enough size against the run.",
+                    "Works well against 11 personnel because it can handle both slot receivers and normal run threats."
+                ],
                 players: [
                     { id:'de-l',  abbr:'DE',  x:270, y:188, color:'#38bdf8' },
                     { id:'dt-l',  abbr:'DT',  x:330, y:185, color:'#38bdf8' },
@@ -117,8 +110,11 @@ class FormationVis {
                 id: 'rush',
                 label: 'Rush / Bear Front',
                 desc: 'Extra pass rushers loaded at the line — designed to collapse the pocket fast',
-                pros: ['Maximum pass-rush pressure', 'Disrupts timing routes & rollouts', 'Forces quick-throw errors'],
-                cons: ['Highly vulnerable to the run', 'Leaves CBs on islands in man', 'Easy to exploit with screens & draws'],
+                overview: [
+                    "Designed to create quick pressure and collapse the pocket.",
+                    "Loads defenders near the line of scrimmage to attack the quarterback or stop inside runs.",
+                    "Can be risky if the offense gets the ball out quickly or attacks the open space behind the pressure."
+                ],
                 players: [
                     { id:'rs-l',  abbr:'RS',  x:222, y:185, color:'#f87171' },
                     { id:'de-l',  abbr:'DE',  x:285, y:183, color:'#38bdf8' },
@@ -138,8 +134,11 @@ class FormationVis {
                 id: 'dime',
                 label: 'Dime (4–1–6)',
                 desc: 'Six defensive backs — used on obvious passing downs (3rd & long)',
-                pros: ['Best possible pass coverage', 'Covers all 5 routes simultaneously', 'Can disguise zone/man presnap'],
-                cons: ['Nearly defenseless vs the run', 'One LB cannot fill multiple gaps', 'Susceptible to play-action fakes'],
+                overview: [
+                    "Best in obvious passing situations.",
+                    "Uses extra defensive backs to cover spread formations.",
+                    "Weak against heavy run personnel because there are fewer box defenders."
+                ],
                 players: [
                     { id:'de-l',  abbr:'DE',  x:270, y:188, color:'#38bdf8' },
                     { id:'dt-l',  abbr:'DT',  x:330, y:185, color:'#38bdf8' },
@@ -156,6 +155,183 @@ class FormationVis {
                 ball: { x:380, y:165 }
             }
         ];
+
+        // Offensive personnel groups
+        this.OFFENSES = [
+            {
+                id: "10",
+                label: "10 Personnel",
+                desc: "1 RB, 0 TE, 4 WR",
+
+                overview: [
+                    "Spreads the field with four wide receivers.",
+                    "Strong for quick passing and spacing concepts.",
+                    "Can struggle in the run game because there are no tight ends."
+                ],
+
+                players: [
+                    // Offensive line
+                    { id:'lt', abbr:'LT', x:300, y:155, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'lg', abbr:'LG', x:340, y:153, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'c',  abbr:'C',  x:380, y:152, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'rg', abbr:'RG', x:420, y:153, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'rt', abbr:'RT', x:460, y:155, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+
+                    // Backfield
+                    { id:'qb', abbr:'QB', x:380, y:128, fill:'#7c2d12', stroke:'#fb923c', textColor:'#fed7aa' },
+                    { id:'hb', abbr:'HB', x:380, y:88, fill:'#14532d', stroke:'#22c55e', textColor:'#dcfce7' },
+
+                    // Receivers
+                    { id:'wr-l',  abbr:'WR', x:115, y:142, fill:'#1e1b4b', stroke:'#818cf8', textColor:'#e0e7ff' },
+                    { id:'wr-sl', abbr:'WR', x:210, y:142, fill:'#1e1b4b', stroke:'#818cf8', textColor:'#e0e7ff' },
+                    { id:'wr-sr', abbr:'WR', x:550, y:142, fill:'#1e1b4b', stroke:'#818cf8', textColor:'#e0e7ff' },
+                    { id:'wr-r',  abbr:'WR', x:645, y:142, fill:'#1e1b4b', stroke:'#818cf8', textColor:'#e0e7ff' }
+                ]
+            },
+            {
+                id: "11",
+                label: "11 Personnel",
+                desc: "1 RB, 1 TE, 3 WR",
+
+                overview: [
+                    "Balanced personnel group for both run and pass.",
+                    "Three receivers spread the defense horizontally.",
+                    "The tight end gives flexibility as a blocker or receiver."
+                ],
+
+                players: [
+                    // Offensive line
+                    { id:'lt', abbr:'LT', x:300, y:155, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'lg', abbr:'LG', x:340, y:153, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'c',  abbr:'C',  x:380, y:152, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'rg', abbr:'RG', x:420, y:153, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'rt', abbr:'RT', x:460, y:155, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+
+                    // Backfield
+                    { id:'qb', abbr:'QB', x:380, y:128, fill:'#7c2d12', stroke:'#fb923c', textColor:'#fed7aa' },
+                    { id:'hb', abbr:'HB', x:380, y:88, fill:'#14532d', stroke:'#22c55e', textColor:'#dcfce7' },
+
+                    // TE / WR
+                    { id:'te', abbr:'TE', x:505, y:152, fill:'#3f3f0f', stroke:'#a3e635', textColor:'#ecfccb' },
+                    { id:'wr-l', abbr:'WR', x:120, y:142, fill:'#1e1b4b', stroke:'#818cf8', textColor:'#e0e7ff' },
+                    { id:'wr-s', abbr:'WR', x:220, y:142, fill:'#1e1b4b', stroke:'#818cf8', textColor:'#e0e7ff' },
+                    { id:'wr-r', abbr:'WR', x:635, y:142, fill:'#1e1b4b', stroke:'#818cf8', textColor:'#e0e7ff' }
+                ]
+
+            },
+            {
+                id: "12",
+                label: "12 Personnel",
+                desc: "1 RB, 2 TE, 2 WR",
+
+                overview: [
+                    "Heavier grouping with two tight ends.",
+                    "Strong for running the ball and using play action.",
+                    "Can force lighter defenses into bad run fits."
+                ],
+
+                players: [
+                    // Offensive line
+                    { id:'lt', abbr:'LT', x:300, y:155, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'lg', abbr:'LG', x:340, y:153, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'c',  abbr:'C',  x:380, y:152, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'rg', abbr:'RG', x:420, y:153, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'rt', abbr:'RT', x:460, y:155, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+
+                    // Backfield
+                    { id:'qb', abbr:'QB', x:380, y:128, fill:'#7c2d12', stroke:'#fb923c', textColor:'#fed7aa' },
+                    { id:'hb', abbr:'HB', x:380, y:88, fill:'#14532d', stroke:'#22c55e', textColor:'#dcfce7' },
+
+                    // TEs / WRs
+                    { id:'te-l', abbr:'TE', x:255, y:152, fill:'#3f3f0f', stroke:'#a3e635', textColor:'#ecfccb' },
+                    { id:'te-r', abbr:'TE', x:505, y:152, fill:'#3f3f0f', stroke:'#a3e635', textColor:'#ecfccb' },
+                    { id:'wr-l', abbr:'WR', x:110, y:142, fill:'#1e1b4b', stroke:'#818cf8', textColor:'#e0e7ff' },
+                    { id:'wr-r', abbr:'WR', x:650, y:142, fill:'#1e1b4b', stroke:'#818cf8', textColor:'#e0e7ff' }
+                ]
+            },
+            {
+                id: "21",
+                label: "21 Personnel",
+                desc: "2 RB, 1 TE, 2 WR",
+
+                overview: [
+                    "Two-back grouping that supports downhill run concepts.",
+                    "Good for lead blocking and short-yardage situations.",
+                    "Can still pass using the fullback or tight end as outlets."
+                ],
+
+                players: [
+                    // Offensive line
+                    { id:'lt', abbr:'LT', x:300, y:155, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'lg', abbr:'LG', x:340, y:153, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'c',  abbr:'C',  x:380, y:152, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'rg', abbr:'RG', x:420, y:153, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'rt', abbr:'RT', x:460, y:155, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+
+                    // Backfield
+                    { id:'qb', abbr:'QB', x:380, y:128, fill:'#7c2d12', stroke:'#fb923c', textColor:'#fed7aa' },
+                    { id:'hb', abbr:'HB', x:380, y:88, fill:'#14532d', stroke:'#22c55e', textColor:'#dcfce7' },
+                    { id:'fb', abbr:'FB', x:380, y:110, fill:'#14532d', stroke:'#22c55e', textColor:'#dcfce7' },
+
+                    // TE / WR
+                    { id:'te', abbr:'TE', x:505, y:152, fill:'#3f3f0f', stroke:'#a3e635', textColor:'#ecfccb' },
+                    { id:'wr-l', abbr:'WR', x:115, y:142, fill:'#1e1b4b', stroke:'#818cf8', textColor:'#e0e7ff' },
+                    { id:'wr-r', abbr:'WR', x:645, y:142, fill:'#1e1b4b', stroke:'#818cf8', textColor:'#e0e7ff' }
+                ]
+            }
+        ];
+
+// Matchup explanations: offense-defense
+        this.MATCHUPS = {
+            "12-dime": {
+                advantage: "Overwhelmingly Offense",
+                explanation: "12 personnel gives the offense a strong run-game advantage against dime. The offense has two tight ends for heavier blocking, while dime uses extra defensive backs and fewer big run defenders."
+            },
+
+            "21-dime": {
+                advantage: "Overwhelmingly Offense",
+                explanation: "21 personnel can punish dime because the offense has two backs and a tight end, creating a heavy run threat against a lighter defensive package."
+            },
+
+            "10-base": {
+                advantage: "Offense",
+                explanation: "10 personnel spreads the field with four wide receivers. Base defense can struggle because linebackers may be forced into coverage against faster receivers."
+            },
+
+            "11-nickel": {
+                advantage: "Balanced",
+                explanation: "Nickel is built to handle 11 personnel. The defense has enough defensive backs for three receivers while keeping enough size against the run."
+            },
+
+            "10-dime": {
+                advantage: "Balanced",
+                explanation: "Dime matches up well against spread passing looks because it adds extra defensive backs, but the offense can still create space underneath."
+            },
+
+            "12-base": {
+                advantage: "Balanced",
+                explanation: "Base defense has enough size to handle the run threat from 12 personnel, but the offense can still stress it with play action and tight end routes."
+            },
+
+            "21-base": {
+                advantage: "Balanced",
+                explanation: "Base defense is designed to handle heavier offensive personnel, so this matchup is fairly even. The offense can run downhill, but the defense has enough size in the box."
+            },
+
+            "10-rush": {
+                advantage: "Defense",
+                explanation: "Rush packages are designed to pressure the quarterback. Against 10 personnel, the defense can attack empty or spread looks quickly, but it risks leaving space underneath."
+            }
+        };
+
+        // Reorder formations for display
+        const formationOrder = ['dime', 'nickel', 'base', 'rush'];
+
+        this.FORMATIONS.sort((a, b) => {
+            return formationOrder.indexOf(a.id) - formationOrder.indexOf(b.id);
+        });
+
+        this.currentOffenseIdx = 1; // starts at 11 personnel
     }
 
     // ─── initVis ──────────────────────────────────────────────────────────────
@@ -169,11 +345,13 @@ class FormationVis {
         vis.FH       = 340;
 
         vis._drawField();
-        vis._drawOffense();
 
-        // Ball layer (above offense, below defense)
-        vis.ballG    = vis.svg.append('g').attr('class', 'ball-layer');
-        // Defense layer
+// Offense layer
+        vis.offenseG = vis.svg.append('g').attr('class', 'offense-layer');
+
+// Ball layer above offense, below defense
+        vis.ballG = vis.svg.append('g').attr('class', 'ball-layer');
+// Defense layer
         vis.playersG = vis.svg.append('g').attr('class', 'defense-layer');
 
         vis._buildNavDots();
@@ -195,6 +373,8 @@ class FormationVis {
     updateVis(animate) {
         let vis = this;
         const f = vis.FORMATIONS[vis.currentIdx];
+
+        vis._updateOffensePlayers(animate);
 
         // ── Players (D3 enter/update/exit) ──────────────────────────────────
         const players = vis.playersG.selectAll('.player-g')
@@ -263,16 +443,15 @@ class FormationVis {
         document.getElementById(vis.labelId).textContent = f.label;
         document.getElementById(vis.descId).textContent  = f.desc;
 
-        // ── Pros / Cons ──────────────────────────────────────────────────────
-        document.getElementById(vis.prosId).innerHTML =
-            f.pros.map(p => `<li>${p}</li>`).join('');
-        document.getElementById(vis.consId).innerHTML =
-            f.cons.map(c => `<li>${c}</li>`).join('');
-
         // ── Nav dots ─────────────────────────────────────────────────────────
         document.querySelectorAll('.nav-dot').forEach((dot, i) => {
             dot.classList.toggle('active', i === vis.currentIdx);
         });
+
+        vis._updateOffenseDisplay();
+        vis._updateDefenseDisplay();
+        vis._updateMatchupText();
+        vis._updateOverviewBoxes();
     }
 
     // ─── Draw static field ────────────────────────────────────────────────────
@@ -358,6 +537,68 @@ class FormationVis {
         });
     }
 
+    // ─── Draw / update offense icons ────────────────────────────────────────────
+
+    _updateOffensePlayers(animate) {
+        let vis = this;
+
+        const offense = vis.OFFENSES[vis.currentOffenseIdx];
+
+        const players = vis.offenseG.selectAll('.offense-player-g')
+            .data(offense.players, d => d.id);
+
+        const enterSel = players.enter()
+            .append('g')
+            .attr('class', 'offense-player-g')
+            .attr('transform', d => `translate(${d.x},${d.y})`)
+            .attr('opacity', 0)
+            .style('cursor', 'pointer');
+
+        enterSel.append('circle')
+            .attr('r', 13)
+            .attr('fill', d => d.fill)
+            .attr('stroke', d => d.stroke)
+            .attr('stroke-width', 2);
+
+        enterSel.append('text')
+            .attr('text-anchor', 'middle')
+            .attr('dy', '0.35em')
+            .attr('font-family', 'Barlow Condensed, sans-serif')
+            .attr('font-size', '10px')
+            .attr('font-weight', '700')
+            .attr('fill', d => d.textColor)
+            .text(d => d.abbr);
+
+        const merged = enterSel.merge(players);
+
+        merged
+            .on('mousemove', (event, d) => vis._showOffenseTooltip(event, d))
+            .on('mouseleave', () => vis._hideTooltip());
+
+        enterSel.transition().duration(animate ? 500 : 0)
+            .attr('opacity', 1);
+
+        players.transition().duration(animate ? 600 : 0)
+            .ease(d3.easeCubicInOut)
+            .attr('transform', d => `translate(${d.x},${d.y})`)
+            .attr('opacity', 1);
+
+        players.select('circle')
+            .transition().duration(animate ? 600 : 0)
+            .attr('stroke', d => d.stroke)
+            .attr('fill', d => d.fill);
+
+        players.select('text')
+            .transition().duration(animate ? 600 : 0)
+            .attr('fill', d => d.textColor)
+            .text(d => d.abbr);
+
+        players.exit()
+            .transition().duration(animate ? 280 : 0)
+            .attr('opacity', 0)
+            .remove();
+    }
+
     // ─── Draw / update the football ───────────────────────────────────────────
 
     _drawBall(bx, by, animate) {
@@ -395,6 +636,48 @@ class FormationVis {
                 .transition().duration(dur).delay(del)
                 .attr('opacity', 1);
         });
+    }
+
+    _showOffenseTooltip(event, d) {
+        let vis = this;
+
+        const names = {
+            QB: "Quarterback",
+            RB: "Running Back",
+            HB: "Halfback",
+            FB: "Fullback",
+            WR: "Wide Receiver",
+            TE: "Tight End",
+            LT: "Left Tackle",
+            LG: "Left Guard",
+            C: "Center",
+            RG: "Right Guard",
+            RT: "Right Tackle"
+        };
+
+        const descriptions = {
+            QB: "Controls the play, receives the snap, and decides whether to hand off, pass, or scramble.",
+            RB: "Primary ball carrier in the run game and can also block or catch passes.",
+            HB: "Main running back aligned behind or beside the quarterback.",
+            FB: "Lead blocker or short-yardage back used in heavier personnel.",
+            WR: "Receiver aligned wide or in the slot to stretch the defense.",
+            TE: "Hybrid blocker and receiver; important in both run and pass concepts.",
+            LT: "Protects the quarterback's blind side and blocks edge rushers.",
+            LG: "Interior offensive lineman responsible for run blocking and pass protection.",
+            C: "Snaps the ball and anchors the middle of the offensive line.",
+            RG: "Interior offensive lineman responsible for run blocking and pass protection.",
+            RT: "Blocks edge rushers and supports outside run concepts."
+        };
+
+        const name = names[d.abbr] || d.abbr;
+        const desc = descriptions[d.abbr] || "Offensive player.";
+
+        vis.tooltip.innerHTML =
+            `<strong>${d.abbr} — ${name}</strong>${desc}`;
+
+        vis.tooltip.style.opacity = 1;
+        vis.tooltip.style.left = (event.clientX + 14) + 'px';
+        vis.tooltip.style.top  = (event.clientY - 10) + 'px';
     }
 
     // ─── Tooltip ──────────────────────────────────────────────────────────────
@@ -447,18 +730,137 @@ class FormationVis {
             </div>`).join('');
     }
 
+    _updateOffenseDisplay() {
+        let vis = this;
+
+        const offense = vis.OFFENSES[vis.currentOffenseIdx];
+
+        const label = document.getElementById("offense-label");
+        const desc = document.getElementById("offense-desc");
+
+        if (label) {
+            label.textContent = offense.label;
+        }
+
+        if (desc) {
+            desc.textContent = offense.desc;
+        }
+    }
+
+    _updateDefenseDisplay() {
+        let vis = this;
+
+        const defense = vis.FORMATIONS[vis.currentIdx];
+
+        const defenseLabel = document.getElementById("defense-label");
+
+        if (defenseLabel) {
+            defenseLabel.textContent = defense.label;
+        }
+    }
+
+    _updateOverviewBoxes() {
+        let vis = this;
+
+        const offense = vis.OFFENSES[vis.currentOffenseIdx];
+        const defense = vis.FORMATIONS[vis.currentIdx];
+
+        const offenseTitle = document.getElementById("offense-overview-title");
+        const offenseList = document.getElementById("offense-overview-list");
+
+        const defenseTitle = document.getElementById("defense-overview-title");
+        const defenseList = document.getElementById("defense-overview-list");
+
+        if (offenseTitle) {
+            offenseTitle.textContent = offense.label;
+        }
+
+        if (offenseList) {
+            offenseList.innerHTML = "";
+
+            offense.overview.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                offenseList.appendChild(li);
+            });
+        }
+
+        if (defenseTitle) {
+            defenseTitle.textContent = defense.label;
+        }
+
+        if (defenseList) {
+            defenseList.innerHTML = "";
+
+            defense.overview.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                defenseList.appendChild(li);
+            });
+        }
+    }
+
+    _updateMatchupText() {
+        let vis = this;
+
+        const offense = vis.OFFENSES[vis.currentOffenseIdx];
+        const defense = vis.FORMATIONS[vis.currentIdx];
+
+        const matchupKey = offense.id + "-" + defense.id;
+
+        const fallback = {
+            advantage: "Balanced",
+            explanation: offense.label + " against " + defense.label + " is a fairly even matchup. The result depends on the play call, down and distance, and whether the offense attacks the defense's weaker personnel group."
+        };
+
+        const matchup = vis.MATCHUPS[matchupKey] || fallback;
+
+        const advantageEl = document.getElementById("matchup-advantage");
+        const explanationEl = document.getElementById("matchup-explanation");
+
+        if (advantageEl) {
+            advantageEl.textContent = matchup.advantage;
+        }
+
+        if (explanationEl) {
+            explanationEl.textContent = matchup.explanation;
+        }
+    }
+
     // ─── Button / modal event bindings ────────────────────────────────────────
 
     _bindControls() {
         let vis = this;
 
-        // Whistle — advance formation
-        document.getElementById(vis.whistleBtnId).addEventListener('click', () => {
-            const btn = document.getElementById(vis.whistleBtnId);
-            btn.style.transform = 'scale(0.82)';
-            setTimeout(() => btn.style.transform = '', 140);
+// Defense previous
+        document.getElementById(vis.backBtnId).addEventListener("click", () => {
+            vis.currentIdx = (vis.currentIdx - 1 + vis.FORMATIONS.length) % vis.FORMATIONS.length;
+            vis.updateVis(true);
+        });
+
+// Defense next
+        document.getElementById(vis.whistleBtnId).addEventListener("click", () => {
             vis.currentIdx = (vis.currentIdx + 1) % vis.FORMATIONS.length;
             vis.updateVis(true);
+        });
+
+        document.getElementById("offense-prev").addEventListener("click", () => {
+            vis.currentOffenseIdx = (vis.currentOffenseIdx - 1 + vis.OFFENSES.length) % vis.OFFENSES.length;
+
+            vis._updateOffenseDisplay();
+            vis._updateMatchupText();
+            vis._updateOffensePlayers(true);
+            vis._updateOverviewBoxes();
+        });
+
+// Offense next
+        document.getElementById("offense-next").addEventListener("click", () => {
+            vis.currentOffenseIdx = (vis.currentOffenseIdx + 1) % vis.OFFENSES.length;
+
+            vis._updateOffenseDisplay();
+            vis._updateMatchupText();
+            vis._updateOffensePlayers(true);
+            vis._updateOverviewBoxes();
         });
 
         // Help modal open / close
