@@ -96,8 +96,8 @@ class FormationVis {
                     { id:'dt-l',  abbr:'DT',  x:330, y:185, color:'#38bdf8' },
                     { id:'dt-r',  abbr:'DT',  x:430, y:185, color:'#38bdf8' },
                     { id:'de-r',  abbr:'DE',  x:490, y:188, color:'#38bdf8' },
-                    { id:'olb-l', abbr:'OLB', x:315, y:222, color:'#a78bfa' },
-                    { id:'olb-r', abbr:'OLB', x:445, y:222, color:'#a78bfa' },
+                    { id:'mlb', abbr:'MLB', x:315, y:222, color:'#a78bfa' },
+                    { id:'mlb', abbr:'MLB', x:445, y:222, color:'#a78bfa' },
                     { id:'cb-l',  abbr:'CB',  x:155, y:260, color:'#f59e0b' },
                     { id:'nb',    abbr:'NB',  x:270, y:272, color:'#4ade80' },
                     { id:'s-l',   abbr:'S',   x:358, y:285, color:'#f59e0b' },
@@ -171,11 +171,11 @@ class FormationVis {
 
                 players: [
                     // Offensive line
-                    { id:'lt', abbr:'LT', x:300, y:155, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
-                    { id:'lg', abbr:'LG', x:340, y:153, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'rt', abbr:'RT', x:300, y:145, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'rg', abbr:'RG', x:340, y:145, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
                     { id:'c',  abbr:'C',  x:380, y:152, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
-                    { id:'rg', abbr:'RG', x:420, y:153, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
-                    { id:'rt', abbr:'RT', x:460, y:155, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'lg', abbr:'LG', x:420, y:145, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'lt', abbr:'LT', x:460, y:145, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
 
                     // Backfield
                     { id:'qb', abbr:'QB', x:380, y:128, fill:'#7c2d12', stroke:'#fb923c', textColor:'#fed7aa' },
@@ -201,18 +201,18 @@ class FormationVis {
 
                 players: [
                     // Offensive line
-                    { id:'lt', abbr:'LT', x:300, y:155, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
-                    { id:'lg', abbr:'LG', x:340, y:153, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'rt', abbr:'RT', x:300, y:145, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'rg', abbr:'RG', x:340, y:145, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
                     { id:'c',  abbr:'C',  x:380, y:152, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
-                    { id:'rg', abbr:'RG', x:420, y:153, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
-                    { id:'rt', abbr:'RT', x:460, y:155, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'lg', abbr:'LG', x:420, y:145, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'lt', abbr:'LT', x:460, y:145, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
 
                     // Backfield
                     { id:'qb', abbr:'QB', x:380, y:128, fill:'#7c2d12', stroke:'#fb923c', textColor:'#fed7aa' },
                     { id:'hb', abbr:'HB', x:380, y:88, fill:'#14532d', stroke:'#22c55e', textColor:'#dcfce7' },
 
                     // TE / WR
-                    { id:'te', abbr:'TE', x:505, y:152, fill:'#3f3f0f', stroke:'#a3e635', textColor:'#ecfccb' },
+                    { id:'te', abbr:'TE', x:500, y:140, fill:'#3f3f0f', stroke:'#a3e635', textColor:'#ecfccb' },
                     { id:'wr-l', abbr:'WR', x:120, y:142, fill:'#1e1b4b', stroke:'#818cf8', textColor:'#e0e7ff' },
                     { id:'wr-s', abbr:'WR', x:220, y:142, fill:'#1e1b4b', stroke:'#818cf8', textColor:'#e0e7ff' },
                     { id:'wr-r', abbr:'WR', x:635, y:142, fill:'#1e1b4b', stroke:'#818cf8', textColor:'#e0e7ff' }
@@ -232,19 +232,19 @@ class FormationVis {
 
                 players: [
                     // Offensive line
-                    { id:'lt', abbr:'LT', x:300, y:155, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
-                    { id:'lg', abbr:'LG', x:340, y:153, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'rt', abbr:'RT', x:300, y:145, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'rg', abbr:'RG', x:340, y:145, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
                     { id:'c',  abbr:'C',  x:380, y:152, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
-                    { id:'rg', abbr:'RG', x:420, y:153, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
-                    { id:'rt', abbr:'RT', x:460, y:155, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'lg', abbr:'LG', x:420, y:145, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'lt', abbr:'LT', x:460, y:145, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
 
                     // Backfield
                     { id:'qb', abbr:'QB', x:380, y:128, fill:'#7c2d12', stroke:'#fb923c', textColor:'#fed7aa' },
                     { id:'hb', abbr:'HB', x:380, y:88, fill:'#14532d', stroke:'#22c55e', textColor:'#dcfce7' },
 
                     // TEs / WRs
-                    { id:'te-l', abbr:'TE', x:255, y:152, fill:'#3f3f0f', stroke:'#a3e635', textColor:'#ecfccb' },
-                    { id:'te-r', abbr:'TE', x:505, y:152, fill:'#3f3f0f', stroke:'#a3e635', textColor:'#ecfccb' },
+                    { id:'te-l', abbr:'TE', x:260, y:140, fill:'#3f3f0f', stroke:'#a3e635', textColor:'#ecfccb' },
+                    { id:'te-r', abbr:'TE', x:500, y:140, fill:'#3f3f0f', stroke:'#a3e635', textColor:'#ecfccb' },
                     { id:'wr-l', abbr:'WR', x:110, y:142, fill:'#1e1b4b', stroke:'#818cf8', textColor:'#e0e7ff' },
                     { id:'wr-r', abbr:'WR', x:650, y:142, fill:'#1e1b4b', stroke:'#818cf8', textColor:'#e0e7ff' }
                 ]
@@ -262,19 +262,19 @@ class FormationVis {
 
                 players: [
                     // Offensive line
-                    { id:'lt', abbr:'LT', x:300, y:155, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
-                    { id:'lg', abbr:'LG', x:340, y:153, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'rt', abbr:'RT', x:300, y:145, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'rg', abbr:'RG', x:340, y:145, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
                     { id:'c',  abbr:'C',  x:380, y:152, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
-                    { id:'rg', abbr:'RG', x:420, y:153, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
-                    { id:'rt', abbr:'RT', x:460, y:155, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'lg', abbr:'LG', x:420, y:145, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
+                    { id:'lt', abbr:'LT', x:460, y:145, fill:'#0c4a6e', stroke:'#38bdf8', textColor:'#e0f2fe' },
 
                     // Backfield
                     { id:'qb', abbr:'QB', x:380, y:128, fill:'#7c2d12', stroke:'#fb923c', textColor:'#fed7aa' },
-                    { id:'hb', abbr:'HB', x:380, y:88, fill:'#14532d', stroke:'#22c55e', textColor:'#dcfce7' },
-                    { id:'fb', abbr:'FB', x:380, y:110, fill:'#14532d', stroke:'#22c55e', textColor:'#dcfce7' },
+                    { id:'hb', abbr:'HB', x:380, y:70, fill:'#14532d', stroke:'#22c55e', textColor:'#dcfce7' },
+                    { id:'fb', abbr:'FB', x:380, y:100, fill:'#14532d', stroke:'#22c55e', textColor:'#dcfce7' },
 
                     // TE / WR
-                    { id:'te', abbr:'TE', x:505, y:152, fill:'#3f3f0f', stroke:'#a3e635', textColor:'#ecfccb' },
+                    { id:'te', abbr:'TE', x:500, y:140, fill:'#3f3f0f', stroke:'#a3e635', textColor:'#ecfccb' },
                     { id:'wr-l', abbr:'WR', x:115, y:142, fill:'#1e1b4b', stroke:'#818cf8', textColor:'#e0e7ff' },
                     { id:'wr-r', abbr:'WR', x:645, y:142, fill:'#1e1b4b', stroke:'#818cf8', textColor:'#e0e7ff' }
                 ]

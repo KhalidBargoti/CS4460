@@ -468,6 +468,7 @@ h2 {
     max-width: 300px;
     height: auto;
     display: block;
+}
 .formation-controls-row {
     display: flex;
     justify-content: space-between;
