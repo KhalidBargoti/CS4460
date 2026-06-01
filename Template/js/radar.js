@@ -16,12 +16,12 @@ const RADAR_DATA = {
     label:  "Nick Emanwori",
     color:  "#f59e0b",
     stats: {
-      height:    50,  /* ← fill in */
-      weight:    50,  /* ← fill in */
-      armLength: 50,  /* ← fill in */
-      fortyYard: 50,  /* ← fill in */
-      broadJump: 50,  /* ← fill in */
-      vertical:  50   /* ← fill in */
+      height:    97.9,  /* ← fill in */
+      weight:    95.1,  /* ← fill in */
+      tenYard: 94.4,  /* ← fill in */
+      fortyYard: 98.7,  /* ← fill in */
+      broadJump: 99.9,  /* ← fill in */
+      vertical:  99.8   /* ← fill in */
     }
   },
 
@@ -30,12 +30,12 @@ const RADAR_DATA = {
     label:  "Avg Safety",
     color:  "#4ade80",
     stats: {
-      height:    50,
-      weight:    50,
-      armLength: 50,
-      fortyYard: 50,
-      broadJump: 50,
-      vertical:  50
+      height:    69.4,
+      weight:    69.2,
+      tenYard:  76.5,
+      fortyYard: 58.2,
+      broadJump: 54.7,
+      vertical:  76.3
     }
   },
 
@@ -44,12 +44,12 @@ const RADAR_DATA = {
     label:  "Kyle Pitts",
     color:  "#38bdf8",
     stats: {
-      height:    50,  /* ← fill in */
-      weight:    50,  /* ← fill in */
-      armLength: 50,  /* ← fill in */
-      fortyYard: 50,  /* ← fill in */
-      broadJump: 50,  /* ← fill in */
-      vertical:  50   /* ← fill in */
+      height:    95.5,  /* ← fill in */
+      weight:    88.2,  /* ← fill in */
+      tenYard: 84.3,  /* ← fill in */
+      fortyYard: 89.4,  /* ← fill in */
+      broadJump: 84.6,  /* ← fill in */
+      vertical:  85   /* ← fill in */
     }
   },
 
@@ -58,12 +58,12 @@ const RADAR_DATA = {
     label:  "Avg TE",
     color:  "#4ade80",
     stats: {
-      height:    50,
-      weight:    50,
-      armLength: 50,
-      fortyYard: 50,
-      broadJump: 50,
-      vertical:  50
+      height:    55.9,
+      weight:    61.6,
+      tenYard: 59.1,
+      fortyYard: 72.1,
+      broadJump: 62.5,
+      vertical:  73.3
     }
   }
 };
@@ -72,7 +72,7 @@ const RADAR_DATA = {
 const RADAR_AXES = [
   { key: "height",    label: "Height"        },
   { key: "weight",    label: "Weight"        },
-  { key: "armLength", label: "Arm\nLength"   },
+  { key: "tenYard", label: "10-Yard\nSplit"   },
   { key: "fortyYard", label: "40-Yard\nDash" },
   { key: "broadJump", label: "Broad\nJump"   },
   { key: "vertical",  label: "Vert"          }
