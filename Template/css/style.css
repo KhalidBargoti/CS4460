@@ -703,3 +703,132 @@ h2 {
     margin-bottom: 0;
     line-height: 1.45;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   VIS 3 — The Champions
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Champions section header ──────────────────────────────────────────────── */
+.champions-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: #475569;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.champions-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0 0 4px 0;
+    line-height: 1;
+}
+
+.champions-title .the { color: #f1f5f9; }
+.champions-title .champ { color: #f59e0b; }
+
+.champions-subtitle {
+    font-size: 13px;
+    font-weight: 400;
+    color: #475569;
+    margin: 0;
+}
+
+/* ─── Stacked layout ────────────────────────────────────────────────────────── */
+.champions-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 16px;
+}
+
+.champions-row {
+    position: relative;
+    width: 100%;
+    padding: 12px 0;
+}
+
+.champions-row + .champions-row {
+    border-top: 1px solid rgba(51,65,85,0.5);
+    padding-top: 14px;
+}
+
+.col-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #334155;
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+/* ─── Reset button ──────────────────────────────────────────────────────────── */
+.reset-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(15,23,42,0.8);
+    border: 1px solid rgba(51,65,85,0.6);
+    border-radius: 6px;
+    color: #475569;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    margin-top: 10px;
+}
+
+.reset-btn:hover {
+    border-color: #f87171;
+    color: #f87171;
+}
+
+/* ─── Toast notification ────────────────────────────────────────────────────── */
+#champ-toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(15,23,42,0.96);
+    border: 1px solid #f87171;
+    border-radius: 8px;
+    color: #f87171;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 8px 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s, transform 0.25s;
+    z-index: 999;
+}
+
+#champ-toast.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ─── Champion timeline axis ────────────────────────────────────────────────── */
+.champ-axis .domain { stroke: #1e293b; }
+.champ-axis .tick line { display: none; }
+
+/* ─── Instruction hint ──────────────────────────────────────────────────────── */
+.champ-hint {
+    font-size: 11px;
+    color: #334155;
+    font-style: italic;
+    text-align: center;
+    margin-top: 6px;
+}
