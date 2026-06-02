@@ -166,11 +166,10 @@ class TeamStats {
             val:   +row[f.key] || 0
         }));
 
-        // Domains: xOff [0,max] with range [halfW-10, 0] means 0→center, max→left edge
-        const offMax = d3.max(offVals, d => d.val) || 0.01;
-        const defMax = d3.max(defVals, d => d.val) || 0.01;
-        vis.xOff.domain([0, offMax]);
-        vis.xDef.domain([0, defMax]);
+        // Fixed domain [0,1] — bars are proportional to absolute %, scale never mutates
+        // This prevents mid-transition domain corruption when clicking quickly
+        vis.xOff.domain([0, 1]);
+        vis.xDef.domain([0, 1]);
 
         const t = d3.transition().duration(500).ease(d3.easeQuadOut);
 
@@ -232,19 +231,19 @@ class TeamStats {
             .attr('width', d => vis.xDef(d.val))
             .attr('fill', color);
 
-        // Def bar labels
+        // Def bar labels — above each bar, left-aligned from center line (mirrors offense)
         vis.g.selectAll('.label-def').data(defVals).enter().append('text')
             .attr('class', 'label-def')
-            .attr('x', vis.halfW * 2)
-            .attr('y', d => vis.yDef(d.key) + vis.yDef.bandwidth() / 2)
-            .attr('dy', '0.35em')
-            .attr('text-anchor', 'end')
+            .attr('x', vis.halfW + 14)
+            .attr('y', d => vis.yDef(d.key))
+            .attr('dy', '-0.25em')
+            .attr('text-anchor', 'start')
             .attr('font-family', 'Barlow, sans-serif')
             .attr('font-size', '10px')
             .attr('fill', '#64748b')
             .text(d => d.label);
 
-        // Def value labels
+        // Def value labels — to the right of bar end
         vis.g.selectAll('.val-def').data(defVals).enter().append('text')
             .attr('class', 'val-def')
             .attr('x', vis.halfW + 12)
