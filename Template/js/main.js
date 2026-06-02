@@ -1,5 +1,6 @@
 // ─── Visualization instances ──────────────────────────────────────────────────
 let lineChart, timeline, formationVis;
+let championTimeline, teamStats, teamComparison;
 
 loadData();
 
@@ -34,6 +35,16 @@ function loadData() {
         );
 
         formationVis.initVis();
+
+        // ── Vis 3: Champions ──────────────────────────────────────────────────
+        championTimeline = new ChampionTimeline("champion-timeline", data);
+        teamStats        = new TeamStats("team-stats", data);
+        teamComparison   = new TeamComparison("team-comparison", data);
+
+        championTimeline.initVis();
+        teamStats.initVis();
+        teamComparison.initVis();
+
     });
 }
 
@@ -84,4 +95,26 @@ function prepForUse(rawData) {
  */
 function brushed(selectionRange) {
     lineChart.filterByRange(selectionRange);
+}
+
+/*
+ * championSelectionChanged — called by ChampionTimeline on every click.
+ * selected = array of { year, code, name, color }, length 0–4
+ */
+function championSelectionChanged(selected) {
+    if (!teamStats || !teamComparison) return;
+
+    if (selected.length === 0) {
+        // Nothing selected — clear both
+        teamStats.setTeam(null);
+        teamComparison.setTeams([]);
+    } else if (selected.length === 1) {
+        // Single selection — show in teamStats, clear comparison
+        teamStats.setTeam(selected[0]);
+        teamComparison.setTeams([]);
+    } else {
+        // Multi-selection — first team in single stat, all in comparison
+        teamStats.setTeam(selected[0]);
+        teamComparison.setTeams(selected);
+    }
 }
