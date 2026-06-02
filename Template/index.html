@@ -18,7 +18,41 @@
 </head>
 <body>
 
-<div class="container-fluid">
+<section class="title-page">
+    <div class="title-content">
+        <div class="header-eyebrow">NFL Strategy · 2010–2025</div>
+
+        <h1>
+            The Evolution of <span class="highlight">the NFL</span>
+        </h1>
+
+        <p class="title-subtitle">
+            How modern football shifted from simple run/pass identity
+            to a game of personnel, matchups, and hybrid athletes.
+        </p>
+
+        <p class="title-description">
+            This project walks through three parts of the modern game:
+            league-wide offensive trends, formation matchups, and the rise
+            of versatile players who blur traditional positions.
+        </p>
+
+        <a href="#step-1" class="start-button">Start Exploring ↓</a>
+    </div>
+</section>
+
+<section class="story-step" id="step-1">
+    <div class="step-label">Step 1 · The league trend</div>
+    <h2>First, look at how offensive identity changed.</h2>
+    <p>
+        Before looking at formations or individual players, we start with the big picture:
+        how many teams leaned <strong>run-first</strong> or <strong>pass-first</strong>
+        across each NFL season. This gives us the league-wide trend that the rest of the
+        project helps explain.
+    </p>
+</section>
+
+<div class="container-fluid" id="main-story">
     <div class="row">
         <div class="col-md-10 offset-1 main-card">
 
@@ -53,6 +87,17 @@
         </div>
     </div>
 
+    <section class="story-step">
+        <div class="step-label">Step 2 · Matchups explain the trend</div>
+        <h2>Run or pass is only part of the story.</h2>
+        <p>
+            Modern football is about creating matchups. Offensive personnel tells us what
+            types of players are on the field, while defensive formations show how the defense
+            responds. Use this section to see why certain combinations favor the
+            <strong>offense</strong>, the <strong>defense</strong>, or stay balanced.
+        </p>
+    </section>
+
     <!-- ── Vis 2 ────────────────────────────────────────────────── -->
     <div class="row" style="margin-top: 48px;">
         <div class="col-md-10 offset-1 main-card">
@@ -61,7 +106,7 @@
             <div class="row justify-content-center header-row">
                 <div class="align-self-center">
                     <div class="header-eyebrow">NFL  ·  Formation Matchups</div>
-                    <h1>Evolution of <span class="highlight">the Defense</span></h1>
+                    <h1>Evolution of <span class="highlight">the NFL</span></h1>
                     <h2>How offensive personnel and defensive formations match up<br>
                         <span class="subtext">Use the arrows to explore different matchups.</span>
                     </h2>
@@ -105,7 +150,7 @@
                     <!-- Matchup Explanation -->
                     <div class="matchup-box">
                         <div class="matchup-title">
-                            Matchup Advantage: <span id="matchup-advantage">Balanced</span>
+                            Key Takeaway: <span id="matchup-advantage">Balanced</span>
                         </div>
                         <p id="matchup-explanation">
                             Select an offensive personnel group and defensive formation to see the matchup.
@@ -145,12 +190,24 @@
 
             <div class="row footer-row" style="margin-top: 8px;">
                 <div class="col-12 text-center footer-note">
-                    Hover any player icon for position details &nbsp;·&nbsp;
+                    Hover any player icon for position details.
                 </div>
             </div>
 
         </div>
     </div>
+
+    <section class="story-step">
+        <div class="step-label">Step 3 · The player evolution</div>
+        <h2>Modern schemes demand modern athletes.</h2>
+        <p>
+            The final section looks at hybrid athletes: players who do not fit neatly into
+            one old-school position role. Larger radar shapes show where a player is above
+            the positional average, helping explain why versatility is so valuable in the
+            modern NFL.
+        </p>
+    </section>
+
       <!-- ── Vis 3: Player Radar Charts (2×2) ─────────────────────────────── -->
     <div class="row" style="margin-top: 48px;">
         <div class="col-md-10 offset-1 main-card">
@@ -167,7 +224,7 @@
             </div>
 
             <!-- Vis 4 row label + charts -->
-            <div class="radar-vis-label">Visualization 4</div>
+            <div class="radar-vis-label">Defensive Hybrid Example</div>
             <div class="radar-grid">
                 <div class="radar-unit">
                     <div class="radar-title" style="color:#f59e0b;">Nick Emmanwori</div>
@@ -180,7 +237,7 @@
             </div>
 
             <!-- Vis 5 row label + charts -->
-            <div class="radar-vis-label">Visualization 5</div>
+            <div class="radar-vis-label">Offensive Hybrid Example</div>
             <div class="radar-grid" style="margin-bottom: 24px;">
                 <div class="radar-unit">
                     <div class="radar-title" style="color:#38bdf8;">Nico Collins</div>
@@ -201,6 +258,17 @@
         </div>
     </div>
 </div>
+
+<section class="story-step final-step">
+    <div class="step-label">Final takeaway</div>
+    <h2>The NFL is moving toward flexibility.</h2>
+    <p>
+        The story is not just that teams run or pass more. The bigger shift is that
+        offenses use personnel to create matchup problems, defenses respond with
+        specialized packages, and the most valuable players are the ones who can survive
+        in multiple roles.
+    </p>
+</section>
 
 <!-- Tooltip (shared) -->
 <div id="formation-tooltip"></div>

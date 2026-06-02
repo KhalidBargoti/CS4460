@@ -44,12 +44,12 @@ const RADAR_DATA = {
     label:  "Kyle Pitts",
     color:  "#38bdf8",
     stats: {
-      height:    95.5,  /* ← fill in */
-      weight:    88.2,  /* ← fill in */
-      tenYard: 84.3,  /* ← fill in */
-      fortyYard: 89.4,  /* ← fill in */
-      broadJump: 84.6,  /* ← fill in */
-      vertical:  85   /* ← fill in */
+      height:    95.5,
+      weight:    88.2,
+      tenYard: 84.3,
+      fortyYard: 89.4,
+      broadJump: 84.6,
+      vertical:  85
     }
   },
 
