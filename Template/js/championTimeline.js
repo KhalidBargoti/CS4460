@@ -20,12 +20,7 @@ class ChampionTimeline {
 
         // Hard-coded Super Bowl champions 2010–2025
         this.CHAMPIONS = [
-            { year:2010, code:'GB',  name:'Packers'    },
-            { year:2011, code:'NYG', name:'Giants'     },
-            { year:2012, code:'BAL', name:'Ravens'     },
-            { year:2013, code:'SEA', name:'Seahawks'   },
-            { year:2014, code:'NE',  name:'Patriots'   },
-            { year:2015, code:'DEN', name:'Broncos'    },
+
             { year:2016, code:'NE',  name:'Patriots'   },
             { year:2017, code:'PHI', name:'Eagles'     },
             { year:2018, code:'NE',  name:'Patriots'   },
@@ -41,8 +36,7 @@ class ChampionTimeline {
         this.DOT_COLORS = [
             '#38bdf8','#f59e0b','#4ade80','#f87171',
             '#a78bfa','#fb923c','#34d399','#e879f9',
-            '#60a5fa','#facc15','#86efac','#fca5a5',
-            '#c084fc','#fdba74','#6ee7b7','#f0abfc'
+            '#60a5fa','#facc15'
         ];
 
         this.CHAMPIONS.forEach((c,i) => c.color = this.DOT_COLORS[i]);
