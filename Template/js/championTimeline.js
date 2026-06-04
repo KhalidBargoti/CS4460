@@ -18,21 +18,18 @@ class ChampionTimeline {
         this.selected      = [];   // [{year, team, name, color}]
         this.MAX_SELECT    = 4;
 
-        // Hard-coded Super Bowl champions 2010–2025
         this.CHAMPIONS = [
-
-            { year:2016, code:'NE',  name:'Patriots'   },
-            { year:2017, code:'PHI', name:'Eagles'     },
-            { year:2018, code:'NE',  name:'Patriots'   },
-            { year:2019, code:'KC',  name:'Chiefs'     },
-            { year:2020, code:'TB',  name:'Buccaneers' },
-            { year:2021, code:'LA',  name:'Rams'       },
-            { year:2022, code:'KC',  name:'Chiefs'     },
-            { year:2023, code:'KC',  name:'Chiefs'     },
-            { year:2024, code:'PHI', name:'Eagles'     },
-            { year:2025, code:'PHI', name:'Eagles'     },
+            { year:2016, code:'NE', name:'Patriots', versatilePlayers:['James White', 'Julian Edelman', 'Dont’a Hightower'] },
+            { year:2017, code:'PHI', name:'Eagles', versatilePlayers:['Zach Ertz', 'Malcolm Jenkins',] },
+            { year:2018, code:'NE', name:'Patriots', versatilePlayers:[, 'Julian Edelman', 'Patrick Chung'] },
+            { year:2019, code:'KC', name:'Chiefs', versatilePlayers:['Travis Kelce', 'Tyreek Hill', 'Tyrann Mathieu'] },
+            { year:2020, code:'TB', name:'Buccaneers', versatilePlayers:['Rob Gronkowski', 'Antoine Winfield', 'Lavonte David'] },
+            { year:2021, code:'LA', name:'Rams', versatilePlayers:['Cooper Kupp', 'Aaron Donald.', 'Jalen Ramsey'] },
+            { year:2022, code:'KC', name:'Chiefs', versatilePlayers:['Travis Kelce', 'L’Jarius Sneed'] },
+            { year:2023, code:'KC', name:'Chiefs', versatilePlayers:['Travis Kelce', 'Trent McDuffie'] },
+            { year:2024, code:'PHI', name:'Eagles', versatilePlayers:['Saquon Barkley', 'A.J. Brown', 'Cooper DeJean'] },
+            { year:2025, code:'SEA', name:'Seahawks', versatilePlayers:['Nick Emmanwori', 'AJ Barner', 'Devon Witherspoon'] }
         ];
-
         this.DOT_COLORS = [
             '#38bdf8','#f59e0b','#4ade80','#f87171',
             '#a78bfa','#fb923c','#34d399','#e879f9',
@@ -57,6 +54,11 @@ class ChampionTimeline {
             .attr('height', vis.height + vis.margin.top  + vis.margin.bottom)
             .append('g')
             .attr('transform', `translate(${vis.margin.left},${vis.margin.top})`);
+
+        vis.tooltip = d3.select("body")
+            .append("div")
+            .attr("id", "champion-tooltip")
+            .attr("class", "champion-tooltip");
 
         // Horizontal scale: year → x pixel
         vis.x = d3.scalePoint()
@@ -116,9 +118,18 @@ class ChampionTimeline {
 
         enterDots.merge(dots)
             .attr('cx', d => vis.x(d.year))
-            .attr('fill',   d => vis._isSelected(d) ? d.color : d.color + '33')
+            .attr('fill', d => vis._isSelected(d) ? d.color : d.color + '33')
             .attr('stroke', d => d.color)
             .attr('stroke-width', d => vis._isSelected(d) ? 2.5 : 1.5)
+            .on('mouseover', function(event, d) {
+                vis._showTooltip(event, d);
+            })
+            .on('mousemove', function(event, d) {
+                vis._moveTooltip(event);
+            })
+            .on('mouseleave', function() {
+                vis._hideTooltip();
+            })
             .on('click', (event, d) => vis._handleClick(event, d));
 
         // ── Team label (below dot) ────────────────────────────────────────
@@ -134,8 +145,18 @@ class ChampionTimeline {
             .attr('font-family', 'Barlow Condensed, sans-serif')
             .attr('font-size', '10px')
             .attr('font-weight', d => vis._isSelected(d) ? '700' : '400')
-            .attr('fill',  d => vis._isSelected(d) ? d.color : '#64748b')
-            .text(d => d.code);
+            .attr('fill', d => vis._isSelected(d) ? d.color : '#64748b')
+            .style('cursor', 'pointer')
+            .text(d => d.code)
+            .on('mouseover', function(event, d) {
+                vis._showTooltip(event, d);
+            })
+            .on('mousemove', function(event) {
+                vis._moveTooltip(event);
+            })
+            .on('mouseleave', function() {
+                vis._hideTooltip();
+            });
     }
 
     // ── Click handler ─────────────────────────────────────────────────────────
@@ -187,6 +208,34 @@ class ChampionTimeline {
         toast.classList.add('visible');
         clearTimeout(this._toastTimer);
         this._toastTimer = setTimeout(() => toast.classList.remove('visible'), 2400);
+    }
+
+    _showTooltip(event, d) {
+        let players = d.versatilePlayers.map(player => `<li>${player}</li>`).join('');
+
+        this.tooltip
+            .style('opacity', 1)
+            .style('left', event.pageX + 16 + 'px')
+            .style('top', event.pageY - 10 + 'px')
+            .html(`
+            <div>
+                <div class="tooltip-year">${d.year} ${d.name}</div>
+                <div class="tooltip-label">Versatile players</div>
+                <ul>${players}</ul>
+            </div>
+        `);
+    }
+
+    _moveTooltip(event) {
+        this.tooltip
+            .style('left', event.pageX + 16 + 'px')
+            .style('top', event.pageY - 10 + 'px');
+    }
+
+    _hideTooltip() {
+        this.tooltip
+            .style('opacity', 0)
+            .html('');
     }
 
     // ── Public: clear all selections ─────────────────────────────────────────
