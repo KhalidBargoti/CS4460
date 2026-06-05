@@ -141,7 +141,7 @@ function drawOneRadar(canvasId, data) {
   /* ── axis labels ──────────────────────────────────────────────────────── */
   const PAD = 20;
   ctx.font      = "bold 9px 'Barlow Condensed', sans-serif";
-  ctx.fillStyle = "#94a3b8";
+  ctx.fillStyle = "#ffffff";
 
   for (let i = 0; i < N; i++) {
     const angle = (Math.PI * 2 * i / N) - Math.PI / 2;
