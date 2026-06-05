@@ -1,0 +1,184 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   field-scroll-bg.css  —  v3 base + goal post, no midfield circle
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+#field-bg {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: -1 !important;
+  overflow: hidden;
+  pointer-events: none;
+  background: #061208;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+}
+
+#field-scroll-inner {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 6000px;
+  will-change: transform;
+  margin: 0 !important;
+  padding: 0 !important;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      #0a3d14 0px,
+      #0a3d14 500px,
+      #0d5019 500px,
+      #0d5019 1000px
+    );
+}
+
+#field-scroll-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent            0px,
+      transparent            497px,
+      rgba(255,255,255,0.75) 497px,
+      rgba(255,255,255,0.75) 500px
+    );
+}
+
+#field-scroll-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-left:  4px solid rgba(255,255,255,0.6);
+  border-right: 4px solid rgba(255,255,255,0.6);
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent            0px,
+      transparent            122px,
+      rgba(255,255,255,0.45) 122px,
+      rgba(255,255,255,0.45) 125px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent            0px,
+      transparent            122px,
+      rgba(255,255,255,0.45) 122px,
+      rgba(255,255,255,0.45) 125px
+    );
+  background-size:     8px 125px, 8px 125px;
+  background-position: 30% 0,     70% 0;
+  background-repeat:   repeat-y,  repeat-y;
+}
+
+.field-endzone {
+  position: absolute;
+  left: 0; right: 0;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 800;
+  letter-spacing: 0.35em;
+  color: rgba(255,255,255,0.18);
+  pointer-events: none;
+  user-select: none;
+}
+.field-endzone-top {
+  top: 0;
+  background: rgba(56, 189, 248, 0.12);
+  border-bottom: 3px solid rgba(255,255,255,0.6);
+}
+.field-endzone-bottom {
+  bottom: 0;
+  background: rgba(245, 158, 11, 0.12);
+  border-top: 3px solid rgba(255,255,255,0.6);
+}
+
+/* ── Goal post glow ──────────────────────────────────────────────────────── */
+#field-scroll-inner svg {
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.3));
+}
+
+.field-yard-num {
+  position: absolute;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(20px, 2.5vw, 40px);
+  font-weight: 800;
+  color: rgba(255,255,255,0.22);
+  letter-spacing: 0.05em;
+  pointer-events: none;
+  user-select: none;
+  transform: translateY(-50%);
+}
+.field-yard-num.left  { left: 4%; }
+.field-yard-num.right { right: 4%; transform: translateY(-50%) rotate(180deg); }
+
+.field-stripe-glow {
+  position: absolute;
+  left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255,255,255,0.5) 15%,
+    rgba(255,255,255,0.5) 85%,
+    transparent 100%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease-out;
+}
+
+#field-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right,
+      rgba(0,0,0,0.70) 0%,
+      transparent 20%,
+      transparent 80%,
+      rgba(0,0,0,0.70) 100%
+    );
+  pointer-events: none;
+}
+
+#field-progress {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 4px;
+  height: 0%;
+  background: linear-gradient(to bottom, #38bdf8, #f59e0b);
+  z-index: 9999;
+  transition: height 0.06s linear;
+  box-shadow: 0 0 10px rgba(245,158,11,0.6);
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.title-page,
+.story-step,
+#main-story,
+.main-card,
+.final-step {
+  position: relative;
+  z-index: 1;
+}
+
+.main-card {
+  background: rgba(4, 10, 14, 0.84) !important;
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+}

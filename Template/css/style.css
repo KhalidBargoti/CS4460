@@ -221,6 +221,37 @@ h2 {
     border-top: 5px solid #f59e0b;
 }
 
+.takeaway-card {
+    max-width: 960px;
+    margin: 26px auto 18px;
+    padding: 18px 22px;
+    border-radius: 14px;
+    background: rgba(2, 6, 23, 0.72);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    color: #cbd5e1;
+    text-align: left;
+}
+
+.takeaway-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #f59e0b;
+    margin-bottom: 8px;
+}
+
+.takeaway-card p {
+    font-size: 15px;
+    line-height: 1.55;
+    margin: 0;
+}
+
+.takeaway-card strong {
+    color: #38bdf8;
+}
+
 /* ─── Vis 1: Line chart row ─────────────────────────────────────────────────── */
 .vis-row {
     height: 62vh;
@@ -574,7 +605,7 @@ h2 {
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #334155;
+    color: #e2e8f0;
     text-align: left;
     padding: 24px 32px 4px;
 }
@@ -702,4 +733,226 @@ h2 {
     color: #cbd5e1;
     margin-bottom: 0;
     line-height: 1.45;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   VIS 3 — The Champions
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Champions section header ──────────────────────────────────────────────── */
+.champions-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: #475569;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.champions-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0 0 4px 0;
+    line-height: 1;
+}
+
+.champions-title .the { color: #f1f5f9; }
+.champions-title .champ { color: #f59e0b; }
+
+.champions-subtitle {
+    font-size: 13px;
+    font-weight: 400;
+    color: #475569;
+    margin: 0;
+}
+
+/* ─── Stacked layout ────────────────────────────────────────────────────────── */
+.champions-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 16px;
+}
+
+.champions-row {
+    position: relative;
+    width: 100%;
+    padding: 12px 0;
+}
+
+.champions-row + .champions-row {
+    border-top: 1px solid rgba(51,65,85,0.5);
+    padding-top: 14px;
+}
+
+.col-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #334155;
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+/* ─── Reset button ──────────────────────────────────────────────────────────── */
+.reset-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(15,23,42,0.8);
+    border: 1px solid rgba(51,65,85,0.6);
+    border-radius: 6px;
+    color: #475569;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    margin-top: 10px;
+}
+
+.reset-btn:hover {
+    border-color: #f87171;
+    color: #f87171;
+}
+
+/* ─── Toast notification ────────────────────────────────────────────────────── */
+#champ-toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(15,23,42,0.96);
+    border: 1px solid #f87171;
+    border-radius: 8px;
+    color: #f87171;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 8px 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s, transform 0.25s;
+    z-index: 999;
+}
+
+#champ-toast.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ─── Champion timeline axis ────────────────────────────────────────────────── */
+.champ-axis .domain { stroke: #1e293b; }
+.champ-axis .tick line { display: none; }
+
+/* ─── Instruction hint ──────────────────────────────────────────────────────── */
+.champ-hint {
+    font-size: 11px;
+    color: #334155;
+    font-style: italic;
+    text-align: center;
+    margin-top: 6px;
+}
+
+.champion-tooltip {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+    background: rgba(7, 13, 26, 0.97);
+    border: 1px solid rgba(245, 158, 11, 0.65);
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: #f8fafc;
+    text-align: left;
+    max-width: 230px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.champion-tooltip .tooltip-year {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #f59e0b;
+    margin-bottom: 4px;
+}
+
+.champion-tooltip .tooltip-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #38bdf8;
+    margin-bottom: 6px;
+}
+
+.champion-tooltip ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.champion-tooltip li {
+    font-size: 13px;
+    line-height: 1.45;
+    color: #f8fafc;
+}
+
+/* ─── Make dark gray text readable ───────────────────────────────────────── */
+.header-eyebrow,
+.champions-eyebrow,
+h2,
+.title-description,
+.title-subtitle,
+.story-card,
+.story-step,
+.story-step p,
+.takeaway-card,
+.takeaway-card p,
+.footer-note,
+.timeline-label,
+.axis text,
+.radar-vis-label,
+.radar-title,
+.control-label,
+.formation-subtext,
+#matchup-explanation,
+.pc-box ul li,
+.pos-info span,
+.champions-subtitle,
+.col-label,
+.reset-btn,
+.champ-hint {
+    color: #f8fafc;
+    opacity: 1;
+    fill: #f8fafc;
+}
+
+/* ─── Force SVG chart text to be readable ─────────────────────────────────── */
+svg text,
+svg tspan {
+    fill: #f8fafc !important;
+    color: #f8fafc !important;
+}
+
+svg .label,
+svg .axis text,
+svg .tick text,
+svg .champ-axis text,
+svg .team-label,
+svg .section-label,
+svg .placeholder-text,
+svg .col-label {
+    fill: #f8fafc !important;
+    color: #f8fafc !important;
 }
