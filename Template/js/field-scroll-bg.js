@@ -63,7 +63,7 @@
     var l = document.createElementNS(ns, 'line');
     l.setAttribute('x1', x1); l.setAttribute('y1', y1);
     l.setAttribute('x2', x2); l.setAttribute('y2', y2);
-    l.setAttribute('stroke', 'rgba(255,255,255,0.85)');
+    l.setAttribute('stroke', '#B3A369');
     l.setAttribute('stroke-width', w);
     l.setAttribute('stroke-linecap', 'round');
     return l;
